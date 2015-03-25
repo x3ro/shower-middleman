@@ -5,3 +5,19 @@
     font-family: "Anka Coder";
     background-color: rgba(255, 255,255, 0.4);
 }
+
+#Cover {
+    h2 {
+        margin: -33px 0 33px 0;
+        font-size: 93px;
+        text-align: center;
+        color: white;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        width: 80%;
+        position: relative;
+    }
+}

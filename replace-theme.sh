@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 function error {
     echo "Error: $1"
@@ -26,7 +26,7 @@ for file in $(ls *.scss); do
 done
 mv "_screen.scss" "_theme.scss"
 cd ../../
-echo "@import 'theme';" > source/stylesheets/screen.scss
+touch source/stylesheets/screen.scss
 
 cp temp/styles/*.scss source/stylesheets/ ||
     error "Could not copy stylesheets. Expected them to be in temp/styles/"
@@ -39,3 +39,6 @@ cp -R temp/fonts source/ ||
 
 rm -rf temp/ ||
     echo "Could not delete temporary directory 'temp/' :("
+
+echo "Important: Make sure to import the theme in your 'screen.scss'"
+echo "This can be done by adding the line: '@import 'theme';'"

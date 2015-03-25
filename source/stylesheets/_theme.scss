@@ -8,7 +8,8 @@
 
 body {
 	counter-reset:slide;
-	font:24px/2 'Open Sans', sans-serif;
+	font:24px/2 'Helvetica', sans-serif;
+	font-weight: lighter;
 	@media print {
 		text-rendering:geometricPrecision;
 		}
@@ -27,7 +28,7 @@ a {
 	padding:0 50px 0 0;
 	color:#555;
 	h1 {
-		font:50px 'Open Sans Light', sans-serif;
+		font:50px 'misoregular', sans-serif;
 		}
 	}
 
@@ -70,7 +71,14 @@ a {
 	position:relative;
 	width:$width;
 	height:$height;
-	background:#FFF;
+	background:$background;
+
+	background-image: url(../../../pictures/logo-large.png);
+	background-size: 100px;
+	background-repeat: no-repeat;
+	background-position: bottom 37px right 50px;
+
+
 	color:#000;
 	-webkit-print-color-adjust:exact;
 	-webkit-text-size-adjust:none;
@@ -109,7 +117,7 @@ a {
 	// Header
 	h2 {
 		margin:0 0 58px;
-		font:48px/1 'Open Sans Light', sans-serif;
+		font:48px/1 'misoregular', sans-serif;
 		}
 	// Text
 	p {

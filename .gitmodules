@@ -1,3 +1,3 @@
 [submodule "source/javascripts/shower-core"]
-	path = source/javascripts/shower-core
+	path = source/vendor/shower-core
 	url = https://github.com/shower/core.git

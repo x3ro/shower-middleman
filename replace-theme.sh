@@ -34,7 +34,7 @@ cp temp/styles/*.scss source/stylesheets/ ||
 cp temp/images/* source/images/ ||
     error "Could not copy images. Expected them to be in temp/images/"
 
-cp -R temp/fonts source/fonts ||
+cp -R temp/fonts source/ ||
     error "Could not copy fonts. Expected them to be in temp/fonts/"
 
 rm -rf temp/ ||

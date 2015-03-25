@@ -55,6 +55,8 @@ set :images_dir, 'images'
 
 ignore 'vendor/*'
 
+activate :syntax, :line_numbers => true
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -71,4 +73,19 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+end
+
+
+
+# =======
+# Helpers
+# =======
+
+require 'cgi'
+helpers do
+  def code_listing(filename, syntax)
+    code(syntax) do
+      File.open("source/code-listings/#{filename}", "rb").read
+    end
+  end
 end

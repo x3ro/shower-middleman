@@ -16,6 +16,18 @@ function error {
 git clone $1 temp/ ||
     error "Could not clone '$1' to temp"
 
+# This does a little cleaning up of the SCSS structure from the template,
+# and it's not strictly required. Not prepending the SCSS files with an
+# underscore will simply result in them being included in the built presentation
+# too.
+cd temp/styles
+for file in $(ls *.scss); do
+    mv $file "_$file"
+done
+mv "_screen.scss" "_theme.scss"
+cd ../../
+echo "@import 'theme';" > source/stylesheets/screen.scss
+
 cp temp/styles/*.scss source/stylesheets/ ||
     error "Could not copy stylesheets. Expected them to be in temp/styles/"
 

@@ -1,0 +1,19 @@
+* boards
+    * samr21-xpro
+* core
+* cpu
+    * cortex-m0_common
+    * samd21
+* dist
+* doc
+* drivers
+    * at86rf231
+* examples
+  * hello-world
+* pkg
+    * libcoap
+* sys
+    * net
+        * network_layer
+            * sixlowpan
+* tests

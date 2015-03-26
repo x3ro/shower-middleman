@@ -8,7 +8,7 @@
 
 body {
 	counter-reset:slide;
-	font:24px/2 'Helvetica', sans-serif;
+	font:30px/2 'Helvetica', sans-serif;
 	font-weight: lighter;
 	@media print {
 		text-rendering:geometricPrecision;
@@ -115,7 +115,7 @@ a {
 	// Header
 	h2 {
 		margin:0 0 58px;
-		font:48px/1 'misoregular', sans-serif;
+		font:60px/1 'misoregular', sans-serif;
 		}
 	// Text
 	p {
@@ -132,7 +132,6 @@ a {
 		}
 	code, kbd, samp {
 		padding:5px 7px 1px;
-		background:rgba(#000, 0.08);
 		color:#000;
 		line-height:1;
 		font-family:'Anka Coder', monospace;

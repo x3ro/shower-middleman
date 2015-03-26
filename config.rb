@@ -85,7 +85,11 @@ require 'cgi'
 helpers do
   def code_listing(filename, syntax)
     code(syntax) do
-      File.open("source/code-listings/#{filename}", "rb").read
+      File.open("source/code-listings/#{filename}", "r:UTF-8").read
     end
+  end
+
+  def code_listing_plain(filename)
+    File.open("source/code-listings/#{filename}", "r:UTF-8").read
   end
 end

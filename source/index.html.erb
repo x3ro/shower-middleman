@@ -145,19 +145,32 @@
 		<div>
 			<h2>Getting the code! WIP</h2>
 			<ul>
-				<li>git clone https://github.com/watr-li/RIOT.git</li>
-				<li>git clone https://github.com/RIOT- OS/applications</li>
+				<li>link to the riot repository</li>
+				<li>git clone https://github.com/RIOT-OS/applications</li>
 			</ul>
 		</div>
 	</section>
 
 
+
+
+
 	<section class="slide">
 		<div>
-			<h2>Native mode =)</h2>
-			<ul>
-				<li>some bullet points for native mode</li>
-			</ul>
+			<h2>Slide-term v0.1 alpha</h2>
+			<p>The shell command examples in our slides will be structured like this:</p>
+			<pre class="terminal"><%= terminal("working dir", "some-shell-command -x") do
+<<-eof
+output of the command
+possibly on multiple lines
+eof
+			end %></pre>
+		</div>
+	</section>
+
+	<section class="slide heading">
+		<div>
+			<h2>Native mode</h2>
 		</div>
 	</section>
 
@@ -197,22 +210,50 @@ eof
 		</div>
 	</section>
 
+	<section class="slide">
+		<div>
+			<h2>Configuring the node</h2>
+			<ul>
+				<li>The "default" example comes with a "shell"</li>
+				<li>Lets us set the radio TODO address, send messages, ...</li>
+			</ul>
+			<pre class="terminal small"><%= terminal("default", "make all term") do
+<<-eof
+[...]
+Welcome to RIOT!
+eof
+			end %><%= terminal("", "addr 23", :prompt => '>') do
+<<-eof
+[transceiver] trying to set address 23
+[transceiver] got address: 23
+eof
+			end %></pre>
+	</div></section>
+
+	<section class="slide">
+		<div>
+			<h2>How about a second node?</h2>
+			<p>Let's switch to a new terminal tab/window!</p>
+	</div></section>
+
+
 
 	<section class="slide">
 		<div>
 			<h2>How about a second node?</h2>
 			<ul>
 				<li>Specify the tap interface to use (default is tap0)</li>
-				<li>After starting the node, configure its radio address</li>
+				<li>Configure the radio address of the second node</li>
 			</ul>
 			<pre class="terminal small"><%= terminal("default", "PORT=tap1 make term") do
 <<-eof
+[...]
 Welcome to RIOT!
 eof
-			end %><%= terminal("", "addr 23", :prompt => ">") do
+			end %><%= terminal("", "addr 42", :prompt => ">") do
 <<-eof
-[transceiver] trying to set address 23
-[transceiver] got address: 23
+[transceiver] trying to set address 42
+[transceiver] got address: 42
 eof
 			end %></pre>
 		</div>
@@ -221,46 +262,82 @@ eof
 
 		<section class="slide">
 		<div>
-			<h2>Connecting the two nodes WIP</h2>
+			<h2>Connecting the two nodes</h2>
 			<ul>
 				<li>Time to send our first packet!</li>
-				<li>Assuming the first node is still running, we run in it:</li>
-				<li>TODO: Back and forth between the two nodes is not so optimal</li>
 			</ul>
-			<%= code_listing_plain("", "terminal small") do
+			<pre class="terminal small"><%= terminal("", "") do
 <<-eof
-Welcome to RIOT! (on the first node)
-> addr 42
+[...]
 [transceiver] trying to set address 42
 [transceiver] got address: 42
-> txtsnd 23 riotlab
 eof
-			end %>
+			end %><%= terminal("", "txtsnd 23 riottest", :prompt => ">") do
+<<-eof
+[transceiver] Sending packet of length 9 to 23: riottest
+[transceiver] Packet sent: 60
+eof
+			end %></pre>
 		</div>
 	</section>
 
 	<section class="slide">
 		<div>
-			<h2>WIP result</h2>
+			<h2>Result on the receiving node</h2>
 			<ul>
 			</ul>
 			<%= code_listing_plain("", "terminal small") do
 <<-eof
-OUTPUT GOES HERE
+> Got radio packet:
+        Length: 9
+        Src:    42
+        Dst:    23
+        LQI:    0
+        RSSI:   0
+
+72 69 6F 74 74 65 73 74 00
 eof
 			end %>
 		</div>
 	</section>
 
-
-	<section class="slide">
+	<section class="slide heading">
 		<div>
-			<h2>Using real hardware</h2>
-			<ul>
-				<li></li>
-			</ul>
+			<h2>Flashing to hardware</h2>
 		</div>
 	</section>
+
+		<section class="slide">
+		<div>
+			<h2>Flashing to hardware</h2>
+			<pre class="terminal small"><%= terminal("default", "BOARD=samr21-xpro make all flash term") do
+<<-eof
+Building application "default" for "samr21-xpro" ...
+[...]
+wrote 55296 bytes from file [...]/samr21-xpro/default
+.hex in 2.454112s (22.004 KiB/s)
+[...]
+shutdown command invoked
+RIOT/dist/tools/pyterm/pyterm -p /dev/ttyUSB2 -b 500000
+INFO # Connect to serial port /dev/ttyUSB2
+Welcome to pyterm!
+Type ’/exit’ to exit.
+eof
+				end %></pre>
+		</div>
+	</section>
+
+
+	<section class="slide heading">
+		<div>
+			<h2>And now for some real networking!</h2>
+		</div>
+	</section>
+
+
+
+
+
 
 
 

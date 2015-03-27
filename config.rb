@@ -106,7 +106,12 @@ helpers do
       "[#{workingdir}]#{opts[:prompt]}"
     end
 
-    cmd = "<code class='prompt'>#{prompt}</code> <code class='command'>#{command}</code>"
+    cmd = if command.nil? || command.length < 1
+      ""
+    else
+      "<code class='prompt'>#{prompt}</code> <code class='command'>#{command}</code>"
+    end
+
     if block.nil?
       cmd
     else

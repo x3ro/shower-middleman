@@ -132,7 +132,6 @@ a {
 		}
 	code, kbd, samp {
 		padding:5px 7px 1px;
-		color:#000;
 		line-height:1;
 		font-family:'Anka Coder', monospace;
 		}
@@ -178,7 +177,7 @@ a {
 			&:before {
 				display:inline-block;
 				width:2em;
-				color:#AAA;
+				opacity: 0.3;
 				text-align:right;
 				}
 			}

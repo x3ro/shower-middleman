@@ -26,12 +26,18 @@
 
 	<section class="slide"><div>
 		<h2>What we're here for</h2>
-		<ul>
+		<ol>
 			<li>Introducing the <span class="riot"><img src="images/riot-logo.png"></span></li>
 			<li>Built on <span class="riot"><img src="images/riot-logo.png"></span>– Watr.li</li>
-			<li>WIP: Getting your hands dirty!</li>
-		</ul>
+			<li>WIP name: Getting your hands dirty!</li>
+		</ol>
 	</div></section>
+
+	<section class="slide heading">
+		<div>
+			<h2>Introducing the <%= riot %></h2>
+		</div>
+	</section>
 
 	<section class="slide"><div>
 		<h2>Architecture</h2>
@@ -47,7 +53,7 @@
 			<table >
 				<tr>
 					<td style="vertical-align: top; font-size: 0.74em; line-height: 1">
-						<pre><code><%= code_listing_plain("dirtree.txt") %></code></pre>
+						<%= code_listing_plain("dirtree.txt") %>
 					</td>
 					<td style="vertical-align: top;">
 						<img style="width: 310px" src="images/architecture.svg">
@@ -58,6 +64,198 @@
 
 	</div></section>
 
+	<section class="slide">
+		<div>
+			<h2><%= riot %> best practices</h2>
+			<ul>
+				<li>Consult the Wiki: <a href="http://wiki.riot-os.org">http://wiki.riot-os.org</a></li>
+				<li>... and the API documentation: <a href="http://doc.riot-os.org">http://doc.riot-os.org</a></li>
+			</ul>
+
+		</div>
+	</section>
+
+	<section class="slide positive">
+		<div>
+			<h2>Do's</h2>
+			<ul>
+				<li>Use static memory</li>
+				<li>Select the priorities carefully</li>
+				<li>Minimize stack usage</li>
+				<ul>
+					<li><code>DEVELHELP / CREATE_STACKTEST</code></li>
+				</ul>
+				<li>Use threads</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide negative">
+		<div>
+			<h2>Don'ts</h2>
+			<ul>
+				<li>Not using threads</li>
+				<li>Using the POSIX wrapper</li>
+				<ul>
+					<li>It's intended for code ported to RIOT,<br>
+					not for natively developed code</li>
+					<li>TODO: correct?</li>
+				</ul>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide heading">
+		<div>
+			<h2>Built on <%= riot %> – Watr.li</h2>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>WIP</h2>
+		</div>
+	</section>
+
+
+
+
+	<section class="slide heading">
+		<div>
+			<h2>Getting your hands dirty!</h2>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Toolchain setup WIP</h2>
+			<ul>
+				<li>Either</li>
+				<ul>
+					<li>Use our VM</li>
+					<li>Setup the toolchain according to bit.ly/1Bv7Z8m</li>
+				</ul>
+				<li>Board information:https://github.com/RIOT-OS/RIOT/wiki/Board%3A-Samr21-xpro </li>
+			</ul>
+		</div>
+	</section>
+
+
+
+	<section class="slide">
+		<div>
+			<h2>Getting the code! WIP</h2>
+			<ul>
+				<li>git clone https://github.com/watr-li/RIOT.git</li>
+				<li>git clone https://github.com/RIOT- OS/applications</li>
+			</ul>
+		</div>
+	</section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Native mode =)</h2>
+			<ul>
+				<li>some bullet points for native mode</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Preparing the virtual network</h2>
+			TODO vllt illustration, mention switch to RIOT dir
+			<%= code_listing_plain("virtual-network.txt", "terminal") %>
+		</div>
+	</section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Building native-mode application</h2>
+			<%= code_listing_plain("", "terminal small") do
+<<-eof
+$ cd examples/default/
+$ make all term
+Building application default for native w/ MCU native.
+"make" -C /home/oleg/git/RIOT/cpu/native
+...
+RIOT native board initialized.
+RIOT native hardware initialization complete.
+kernel_init(): This is RIOT!
+kernel_init(): jumping into first task...
+...
+Welcome to RIOT!
+eof
+			end %>
+		</div>
+	</section>
+
+
+	<section class="slide">
+		<div>
+			<h2>How about a second node?</h2>
+			<ul>
+				<li>Specify the tap interface to use (default is tap0)</li>
+				<li>After starting the node, configure its radio address</li>
+			</ul>
+			<%= code_listing_plain("", "terminal small") do
+<<-eof
+$ PORT=tap1 make term
+Welcome to RIOT!
+> addr 23
+[transceiver] trying to set address 23
+[transceiver] got address: 23
+eof
+			end %>
+		</div>
+	</section>
+
+
+		<section class="slide">
+		<div>
+			<h2>Connecting the two nodes WIP</h2>
+			<ul>
+				<li>Time to send our first packet!</li>
+				<li>Assuming the first node is still running, we run in it:</li>
+				<li>TODO: Back and forth between the two nodes is not so optimal</li>
+			</ul>
+			<%= code_listing_plain("", "terminal small") do
+<<-eof
+Welcome to RIOT! (on the first node)
+> addr 42
+[transceiver] trying to set address 42
+[transceiver] got address: 42
+> txtsnd 23 riotlab
+eof
+			end %>
+		</div>
+	</section>
+
+		<section class="slide">
+		<div>
+			<h2>WIP result</h2>
+			<ul>
+			</ul>
+			<%= code_listing_plain("", "terminal small") do
+<<-eof
+OUTPUT GOES HERE
+eof
+			end %>
+		</div>
+	</section>
+
+
+
+
+
+
+	<section class="slide shout"><div>
+		<h2>Thank you!<br>Any questions?</h2>
+	</div></section>
+
+	<!--
 	<section class="slide small-font"><div>
 		<h2>Plain Text on Your Slides</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
@@ -166,6 +364,9 @@
 		</style>
 	</div></section>
 	<p class="badge"><a href="https://github.com/shower/shower">Fork me on Github</a></p>
+	-->
+
+
 	<!--
 		To hide progress bar from entire presentation
 		just remove “progress” element.

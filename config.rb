@@ -97,4 +97,12 @@ helpers do
     end
     "<pre class='#{clazz}'><code>#{code}</code></pre>"
   end
+
+
+
+  def riot
+    <<-eof
+<span class="riot-inline"><img src="images/riot-logo-cropped.png"></span>
+    eof
+  end
 end

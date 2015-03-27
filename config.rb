@@ -89,7 +89,12 @@ helpers do
     end
   end
 
-  def code_listing_plain(filename)
-    File.open("source/code-listings/#{filename}", "r:UTF-8").read
+  def code_listing_plain(filename, clazz="", &block)
+    code = if !block.nil?
+      block.call
+    else
+      File.open("source/code-listings/#{filename}", "r:UTF-8").read
+    end
+    "<pre class='#{clazz}'><code>#{code}</code></pre>"
   end
 end

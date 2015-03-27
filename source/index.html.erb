@@ -97,9 +97,8 @@
 				<li>Not using threads</li>
 				<li>Using the POSIX wrapper</li>
 				<ul>
-					<li>It's intended for code ported to RIOT,<br>
-					not for natively developed code</li>
-					<li>TODO: correct?</li>
+					<li>It's intended for initial ports to RIOT, not for new <br>
+					code or implementations targeting maximum efficiency</li>
 				</ul>
 			</ul>
 		</div>
@@ -166,7 +165,14 @@
 		<div>
 			<h2>Preparing the virtual network</h2>
 			TODO vllt illustration, mention switch to RIOT dir
-			<%= code_listing_plain("virtual-network.txt", "terminal") %>
+			<pre class="terminal"><%= terminal("RIOT", "cpu/native/tapsetup.sh create 2") do
+<<-eof
+creating tapbr0 ...
+creating tap0 ...
+creating tap1 ...
+eof
+			end %></pre>
+
 		</div>
 	</section>
 
@@ -174,10 +180,9 @@
 	<section class="slide">
 		<div>
 			<h2>Building native-mode application</h2>
-			<%= code_listing_plain("", "terminal small") do
+			<pre class="terminal small"><%= terminal("RIOT", "cd examples/default/") %>
+<%= terminal("default", "make all term") do
 <<-eof
-$ cd examples/default/
-$ make all term
 Building application default for native w/ MCU native.
 "make" -C /home/oleg/git/RIOT/cpu/native
 ...
@@ -188,7 +193,7 @@ kernel_init(): jumping into first task...
 ...
 Welcome to RIOT!
 eof
-			end %>
+			end %></pre>
 		</div>
 	</section>
 
@@ -200,15 +205,16 @@ eof
 				<li>Specify the tap interface to use (default is tap0)</li>
 				<li>After starting the node, configure its radio address</li>
 			</ul>
-			<%= code_listing_plain("", "terminal small") do
+			<pre class="terminal small"><%= terminal("default", "PORT=tap1 make term") do
 <<-eof
-$ PORT=tap1 make term
 Welcome to RIOT!
-> addr 23
+eof
+			end %><%= terminal("", "addr 23", :prompt => ">") do
+<<-eof
 [transceiver] trying to set address 23
 [transceiver] got address: 23
 eof
-			end %>
+			end %></pre>
 		</div>
 	</section>
 
@@ -233,7 +239,7 @@ eof
 		</div>
 	</section>
 
-		<section class="slide">
+	<section class="slide">
 		<div>
 			<h2>WIP result</h2>
 			<ul>
@@ -245,6 +251,17 @@ eof
 			end %>
 		</div>
 	</section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Using real hardware</h2>
+			<ul>
+				<li></li>
+			</ul>
+		</div>
+	</section>
+
 
 
 

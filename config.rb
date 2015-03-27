@@ -98,6 +98,23 @@ helpers do
     "<pre class='#{clazz}'><code>#{code}</code></pre>"
   end
 
+  def terminal(workingdir, command, opts = {}, &block)
+    opts[:prompt] ||= "$"
+    prompt = if workingdir.nil? || workingdir.length < 1
+      "#{opts[:prompt]}"
+    else
+      "[#{workingdir}]#{opts[:prompt]}"
+    end
+
+    cmd = "<code class='prompt'>#{prompt}</code> <code class='command'>#{command}</code>"
+    if block.nil?
+      cmd
+    else
+      output = "<code class='output'>#{block.call}</code>"
+      "#{cmd}\n#{output}"
+    end
+  end
+
 
 
   def riot

@@ -92,6 +92,14 @@ pre.terminal.small {
     font-size: 22px;
 }
 
+pre.terminal code.prompt {
+    color: $color;
+}
+
+pre.terminal code.output {
+    opacity: 0.5;
+}
+
 .heading h2 {
     position:absolute;
     top:50%;

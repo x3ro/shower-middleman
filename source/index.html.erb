@@ -158,7 +158,6 @@
 	<section class="slide">
 		<div>
 			<h2>Slide-term v0.1 alpha</h2>
-			<p>The shell command examples in our slides will be structured like this:</p>
 			<pre class="terminal"><%= terminal("working dir", "some-shell-command -x") do
 <<-eof
 output of the command
@@ -286,7 +285,7 @@ eof
 			<h2>Result on the receiving node</h2>
 			<ul>
 			</ul>
-			<%= code_listing_plain("", "terminal small") do
+			<pre class="terminal small"><%= terminal("", "") do
 <<-eof
 > Got radio packet:
         Length: 9
@@ -297,7 +296,7 @@ eof
 
 72 69 6F 74 74 65 73 74 00
 eof
-			end %>
+			end %></pre>
 		</div>
 	</section>
 
@@ -334,13 +333,67 @@ eof
 		</div>
 	</section>
 
+	<section class="slide">
+		<div>
+			<h2>The <%= riot %> shell</h2>
+			<ul>
+				<li>Interactive shell with some pre-defined commands</li>
+				<li>Can be used in any application</li>
+				<li>Easily extensible with custom functionality</li>
+			</ul>
+	</div></section>
+
+
+	<section class="slide">
+		<div>
+			<h2>The <%= riot %> shell</h2>
+			<pre class="terminal small"><%= terminal("", "help", :prompt => '>') do
+<<-eof
+Command Description
+---------------------------------------
+nc       RIOT netcat - arbitrary UDP
+ping     Send an ICMPv6 echo request
+reboot   Reboot the node
+id       Gets or sets the node ’s id.
+[...]
+eof
+				end %></pre>
+	</div></section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Sixlowapp</h2>
+			<ul>
+				<li>Example application for UDP over 6LoWPAN</li>
+				<li>It comes with two extra commands:</li>
+				<ul>
+					<li><code>ping:</code> The famous ICMP diagnostic tool</li>
+					<li><code>nc:</code> Very basic variation of netcat for UDP connections</li>
+				</ul>
+			</ul>
+	</div></section>
 
 
 
+	<section class="slide">
+		<div>
+			<h2>Sixlowapp</h2>
+			<pre class="terminal"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+<%= terminal("", "ping fe80::ff:fe00:f01e", :prompt => ">") do
+<<-eof
+INFO # ping fe80::ff:fe00:f01e
+INFO # Echo reply from fe80::ff:fe00:f01e
+       received, rtt: 0.0340s
+eof
+			end %></pre>
+	</div></section>
 
 
-
-
+	<section class="slide">
+		<div>
+			<h2>Virtualize your network</h2>
+	</div></section>
 
 
 

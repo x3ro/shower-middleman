@@ -96,6 +96,10 @@ pre.terminal code.prompt {
     color: $color;
 }
 
+pre.terminal.second code.prompt {
+    color: #a7a33f;
+}
+
 pre.terminal code.output {
     opacity: 0.5;
 }

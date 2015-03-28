@@ -161,7 +161,12 @@
 			<pre class="terminal"><%= terminal("working dir", "some-shell-command -x") do
 <<-eof
 output of the command
-possibly on multiple lines
+eof
+			end %></pre><br>
+
+			<pre class="terminal second"><%= terminal("working dir", "some-shell-command -x") do
+<<-eof
+output of the command
 eof
 			end %></pre>
 		</div>
@@ -244,7 +249,7 @@ eof
 				<li>Specify the tap interface to use (default is tap0)</li>
 				<li>Configure the radio address of the second node</li>
 			</ul>
-			<pre class="terminal small"><%= terminal("default", "PORT=tap1 make term") do
+			<pre class="terminal small second"><%= terminal("default", "PORT=tap1 make term") do
 <<-eof
 [...]
 Welcome to RIOT!
@@ -385,6 +390,54 @@ eof
 INFO # ping fe80::ff:fe00:f01e
 INFO # Echo reply from fe80::ff:fe00:f01e
        received, rtt: 0.0340s
+eof
+			end %></pre>
+	</div></section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Sixlowapp</h2>
+			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+<%= terminal("", "ifconfig", :prompt => ">") do
+<<-eof
+[...]
+INFO # inet6 addr: fe80::ff:fe00:2369/128  scope: local
+[...]
+eof
+			end %><%= terminal("", "nc -l 12345", :prompt => ">") do
+<<-eof
+INFO # > Listening for incoming UDP connection
+         at port 12345
+eof
+			end %></pre>
+	</div></section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Sixlowapp</h2>
+			<pre class="terminal small second"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+<%= terminal("", "nc fe80::ff:fe00:2369 12345 test", :prompt => ">") do
+<<-eof
+INFO # Trying to send 5 bytes to
+       fe80::ff:fe00:2369:12345
+INFO # Successful deliverd 53 bytes over UDP
+       to fe80::ff:fe00:2369 to 6LoWPAN
+eof
+			end %></pre>
+	</div></section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Sixlowapp</h2>
+			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+<%= terminal("", "nc -l 12345", :prompt => ">") do
+<<-eof
+INFO # > Listening for incoming UDP connection
+         at port 12345
+INFO # > UDP packet received, payload: test
 eof
 			end %></pre>
 	</div></section>

@@ -27,11 +27,47 @@
 	<section class="slide"><div>
 		<h2>What we're here for</h2>
 		<ol>
+			<li>Development Environment</li>
 			<li>Introducing the <span class="riot"><img src="images/riot-logo.png"></span></li>
 			<li>Built on <span class="riot"><img src="images/riot-logo.png"></span>– Watr.li</li>
 			<li>Getting your hands dirty!</li>
 		</ol>
 	</div></section>
+
+
+	<section class="slide heading">
+		<div>
+			<h2>Development Environment</h2>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Toolchain setup WIP</h2>
+			<ul>
+				<li>Either</li>
+				<ul>
+					<li>Use our VM</li>
+					<li>Setup the toolchain according to bit.ly/1Bv7Z8m</li>
+				</ul>
+				<li>Board information:https://github.com/RIOT-OS/RIOT/wiki/Board%3A-Samr21-xpro </li>
+			</ul>
+		</div>
+	</section>
+
+
+
+	<section class="slide">
+		<div>
+			<h2>Getting the code! WIP</h2>
+			<ul>
+				<li>link to the riot repository</li>
+				<li>git clone https://github.com/RIOT-OS/applications</li>
+			</ul>
+		</div>
+	</section>
+
+
 
 	<section class="slide heading">
 		<div>
@@ -80,7 +116,7 @@
 			<h2>Do's</h2>
 			<ul>
 				<li>Use static memory</li>
-				<li>Choose priorities carefully TODO threads?</li>
+				<li>Choose thread priorities carefully</li>
 				<li>Minimize stack usage</li>
 				<ul>
 					<li><code>DEVELHELP / CREATE_STACKTEST</code></li>
@@ -103,6 +139,23 @@
 			</ul>
 		</div>
 	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Example code</h2>
+
+			<ul>
+				<li>Some examples are currently available, including:</li>
+				<ul>
+					<li>The <code>examples/</code> directory in the main repository</li>
+					<li><a href="http://github.com/RIOT-OS/applications">http://github.com/RIOT-OS/applications</a></li>
+				</ul>
+
+			</ul>
+		</div>
+	</section>
+
+
 
 	<section class="slide heading">
 		<div>
@@ -163,8 +216,10 @@
 		<div>
 			<h2>The Dashboard</h2>
 			<ul>
-				<li>Play web framework</li>
 				<li>Eclipse Californium as CoAP server</li>
+				<li>Play web framework</li>
+				<li>WebSockets for updates to the browser</li>
+				<li>Twitter for critical status notifications</li>
 			</ul>
 		</div>
 	</section>
@@ -179,35 +234,6 @@
 			<h2>Getting your hands dirty!</h2>
 		</div>
 	</section>
-
-	<section class="slide">
-		<div>
-			<h2>Toolchain setup WIP</h2>
-			<ul>
-				<li>Either</li>
-				<ul>
-					<li>Use our VM</li>
-					<li>Setup the toolchain according to bit.ly/1Bv7Z8m</li>
-				</ul>
-				<li>Board information:https://github.com/RIOT-OS/RIOT/wiki/Board%3A-Samr21-xpro </li>
-			</ul>
-		</div>
-	</section>
-
-
-
-	<section class="slide">
-		<div>
-			<h2>Getting the code! WIP</h2>
-			<ul>
-				<li>link to the riot repository</li>
-				<li>git clone https://github.com/RIOT-OS/applications</li>
-			</ul>
-		</div>
-	</section>
-
-
-
 
 
 	<section class="slide">
@@ -325,7 +351,7 @@ eof
 			<ul>
 				<li>Time to send our first packet!</li>
 			</ul>
-			<pre class="terminal small"><%= terminal("", "") do
+			<pre class="terminal small second"><%= terminal("", "") do
 <<-eof
 [...]
 [transceiver] trying to set address 42
@@ -357,6 +383,21 @@ eof
 72 69 6F 74 74 65 73 74 00
 eof
 			end %></pre>
+		</div>
+	</section>
+
+
+	<section class="slide">
+		<div>
+			<h2>Virtualize your network</h2>
+			<ul>
+				<li>In native, you can also monitor traffic in Wireshark</li>
+				<!-- <li>The dissector can be found in dist/tools/wireshark_dissector</li> -->
+				<li>There's a python framework (desvirt) to setup arbitrary topologies using defined loss-rates</li>
+				<ul>
+					<li>See <a href="http://wiki.riot- os.org/Virtual-riot-network">http://wiki.riot-os.org/Virtual-riot-network</a></li>
+				</ul>
+			</ul>
 		</div>
 	</section>
 
@@ -439,7 +480,7 @@ eof
 	<section class="slide">
 		<div>
 			<h2>Sixlowapp</h2>
-			<pre class="terminal"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash term") %>
 <%= terminal("", "ping fe80::ff:fe00:f01e", :prompt => ">") do
 <<-eof
 INFO # ping fe80::ff:fe00:f01e
@@ -453,7 +494,7 @@ eof
 	<section class="slide">
 		<div>
 			<h2>Sixlowapp</h2>
-			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash term") %>
 <%= terminal("", "ifconfig", :prompt => ">") do
 <<-eof
 [...]
@@ -472,7 +513,7 @@ eof
 	<section class="slide">
 		<div>
 			<h2>Sixlowapp</h2>
-			<pre class="terminal small second"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+			<pre class="terminal small second"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash term") %>
 <%= terminal("", "nc fe80::ff:fe00:2369 12345 test", :prompt => ">") do
 <<-eof
 INFO # Trying to send 5 bytes to
@@ -484,10 +525,10 @@ eof
 	</div></section>
 
 
-	<section class="slide">
+<!-- 	<section class="slide">
 		<div>
 			<h2>Sixlowapp</h2>
-			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash") %>
+			<pre class="terminal small"><%= terminal("sixlowapp", "BOARD=samr21-xpro make flash term") %>
 <%= terminal("", "nc -l 12345", :prompt => ">") do
 <<-eof
 INFO # > Listening for incoming UDP connection
@@ -495,15 +536,30 @@ INFO # > Listening for incoming UDP connection
 INFO # > UDP packet received, payload: test
 eof
 			end %></pre>
-	</div></section>
+	</div></section> -->
+
+
 
 
 	<section class="slide">
 		<div>
-			<h2>Virtualize your network</h2>
+			<h2>Where to get help</h2>
+			<ul>
+				<li>Mailing lists</li>
+				<ul>
+					<li>devel@riot-os.org; users@riot-os.org</li>
+				</ul>
+				<li><b>#riot-os</b> on irc.freenode.org</li>
+				<li>Bi-weekly video conferences announced on the developer mailing list</li>
+			</ul>
 	</div></section>
 
 
+	<section class="slide heading">
+		<div>
+			<h2>End of the sneak peek!</h2>
+		</div>
+	</section>
 
 
 	<section class="slide shout"><div>

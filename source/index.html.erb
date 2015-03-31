@@ -262,7 +262,6 @@ eof
 	<section class="slide">
 		<div>
 			<h2>Preparing the virtual network</h2>
-			TODO vllt illustration, mention switch to RIOT dir
 			<pre class="terminal"><%= terminal("RIOT", "cpu/native/tapsetup.sh create 2") do
 <<-eof
 creating tapbr0 ...
@@ -300,7 +299,7 @@ eof
 			<h2>Configuring the node</h2>
 			<ul>
 				<li>The "default" example comes with a "shell"</li>
-				<li>Lets us set the radio TODO address, send messages, ...</li>
+				<li>Lets us set the radio address, send messages, ...</li>
 			</ul>
 			<pre class="terminal small"><%= terminal("default", "make all term") do
 <<-eof
